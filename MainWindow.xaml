@@ -1,0 +1,47 @@
+﻿<Window x:Class="MetodoDeFalsaPosicion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MetodoDeFalsaPosicion"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="0" Grid.Row="0" Header="Datos" BorderBrush="Black" Margin="5">
+            <DockPanel>
+                <TextBlock Text="Intervalo a = "></TextBlock>
+                <TextBox x:Name="TxtIntervaloA" Width="50" Margin="0,0,10,0" Text="-2"></TextBox>
+                <TextBlock Text="Intervalo b = "></TextBlock>
+                <TextBox x:Name="TxtIntervaloB" Width="50" Margin="0,0,10,0" Text="2"></TextBox>
+                <TextBlock Text="f(x) = "></TextBlock>
+                <TextBox x:Name="TxtEcuacion" Width="100" Margin="0,0,10,0" Text="sin(x) + 2x -1" IsReadOnly="True"></TextBox>
+                <TextBlock Text="Error = "></TextBlock>
+                <TextBox x:Name="TxtError" Width="100" Margin="0,0,10,0" Text="0.001" IsReadOnly="True"></TextBox>
+                <Button x:Name="BtnCalcular" Content="Calcular" Margin="0,0,10,0" Click="BtnCalcular_Click" Padding="5,1,5,1"></Button>
+                <Button x:Name="BtnLimpiar" Content="Limpiar" Click="BtnLimpiar_Click"/>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox Header="Iteraciones" Grid.Column="0" Grid.Row="1" BorderBrush="Black" Margin="5">
+            <DataGrid x:Name="DgIteraciones" IsReadOnly="True" AutoGenerateColumns="False" ColumnWidth="*">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding I}" Header="i" CanUserSort="False" />
+                    <DataGridTextColumn Binding="{Binding A}" Header="a" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding B}" Header="b" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding Fa}" Header="f(a)" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding Fb}" Header="f(b)" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding Xr}" Header="Xr" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding Fxr}" Header="f(Xr)" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding FaFxr}" Header="f(a)*f(Xr)" CanUserSort="False"/>
+                    <DataGridTextColumn Binding="{Binding Error}" Header="Error" CanUserSort="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</Window>
