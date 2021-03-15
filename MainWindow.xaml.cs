@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MetodoDeFalsaPosicion
 {
@@ -87,21 +76,17 @@ namespace MetodoDeFalsaPosicion
                         iteracion.Fa = Math.Sin(iteracion.A) + (2 * iteracion.A) - 1;
                         iteracion.Fb = Math.Sin(iteracion.B) + (2 * iteracion.B) - 1;
                         iteracion.Xr = iteracion.B - (iteracion.Fb * (iteracion.A - iteracion.B) / (iteracion.Fa - iteracion.Fb));
-                        iteracion.Error = Math.Abs(100 * (iteracion.Xr - iteracionAnterior.Xr) / iteracion.Xr);
                     }
 
                     iteracion.Fxr = Math.Sin(iteracion.Xr) + (2 * iteracion.Xr) - 1;
                     iteracion.FaFxr = iteracion.Fa * iteracion.Fxr;
+                    iteracion.Error = Math.Abs(100 * (iteracion.Xr - iteracionAnterior.Xr) / iteracion.Xr);
 
                     iteracionAnterior = iteracion;
-
+                    iteraciones.Add(iteracion);
                     i++;
 
-                    iteraciones.Add(iteracion);
-
-                    err = string.Format("{0:N3}", iteracion.Error);
-
-                } while (!err.Equals(error) && !err.Equals("0.000"));
+                } while (iteracion.Error != 0.001 && iteracion.Error != 0);
 
                 DgIteraciones.ItemsSource = iteraciones;
             }
